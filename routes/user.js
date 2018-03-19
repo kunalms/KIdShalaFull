@@ -48,12 +48,15 @@ router.post('/authenticate', function(req, res, next) {
   		res.json({sucess:false,msg:"Invalid Username"})
   	}
   	else{
-  		console.log(credentials);
+  		userDetails= user;
+  		//console.log(userDetails)
+  		//console.log(credentials);
   		User.validateUser(credentials,(err,response)=>{
   			if(response){
-  				User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
-  					res.json({sucess:true, user:user});
-  				});
+  				res.json({sucess:true, user:userDetails});
+  				//User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
+  					//res.json({sucess:true, user:user});
+  				//});
   			}
   			else{
 					res.json({sucess:true, msg:"Invalid details"});
@@ -83,6 +86,7 @@ router.get('/checkusername/:user_name', function(req, res, next) {
   });
   
 });
+
 
 
 module.exports = router;

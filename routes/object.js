@@ -1,29 +1,33 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
+var Obj = require('../models/object');
 
 
 /* GET method  to register user. */
 router.post('/add', function(req, res, next) {
-  let newUser = new User({
-  	full_name:req.body.full_name,
-  	user_name:req.body.user_name,
-  	password:req.body.password,
-  	age:req.body.age,
-  	gender:req.body.gender,
-  	latitude:req.body.latitude,
-  	longitude:req.body.longitude,
-  	last_seen:new Date()
+	let newObject = new Obj({
+  	name:req.body.name,
+  	description:req.body.description,
+  	original_file_path:"",
+  	asset_bundle_path:"",
+  	image_path:"",
+  	view_count:0,
+  	upload_date:new Date(),
+  	cat_id:req.body.cat_id,
+  	user_id:req.body.user_id,
+  	approve_status:0
   });
 
-  User.addUser(newUser,(err,user)=>{
-  	if(err){
-  		res.json({sucess:false,msg:"failed to register user"});
-  	}
-  	else{
-  		res.json({sucess:true,msg:"user sucessfully registered",id:newUser.id});	
-  	}
-  });
+	res.json(newObject);
+  
+  // Obj.addObject(newUser,(err,object)=>{
+  // 	if(err){
+  // 		res.json({sucess:false,msg:"failed to submit your object please try later."});
+  // 	}
+  // 	else{
+  // 		res.json({sucess:true,msg:"your object sucessfully uploaded.",id:object.id});	
+  // 	}
+  // });
 });
 
 /* GET method  to authenticate user. */
