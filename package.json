@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "client-install": "cd KidShalaClient && npm install",
+    "client-install": "cd client && npm install",
     "start": "nodemon server",
     "server": "nodemon server.js",
     "client": "cd client && ng serve",
