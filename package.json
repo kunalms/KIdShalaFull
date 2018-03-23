@@ -6,7 +6,7 @@
     "client-install": "cd client && npm install",
     "start": "nodemon server",
     "server": "nodemon server.js",
-    "client": "cd client && ng serve",
+    "client": "cd client && npm start",
     "start-db": "sudo service start mongod",
     "dev": "concurrently  \"npm run server\" \"npm run client\""
   },

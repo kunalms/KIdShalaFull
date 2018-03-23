@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule }    from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -15,9 +16,16 @@ import { HomeComponent } from './home/home.component';
 
 
 import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+
+
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
 const appRoutes:Routes=[
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
   {
     path:'home', component:HomeComponent
   },{
@@ -42,9 +50,10 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     FormsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [ValidateService],
+  providers: [ValidateService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

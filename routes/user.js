@@ -3,6 +3,10 @@ var router = express.Router();
 var User = require('../models/user');
 
 
+router.get('/register', function(req, res, next) {
+  res.json( {"success":true,"msg":"user sucessfully registered","id":"5ab3f21818b4b935b8a32538"}); 
+});
+
 /* GET method  to register user. */
 router.post('/register', function(req, res, next) {
   let newUser = new User({
@@ -21,14 +25,14 @@ router.post('/register', function(req, res, next) {
   	if(user== null){
 		User.addUser(newUser,(err,user)=>{
 			if(err){
-				res.json({sucess:false,msg:"failed to register user"});
+				res.json({success:false,msg:"failed to register user"});
 			}
 			else{
-				res.json({sucess:true,msg:"user sucessfully registered",id:user.id});	
+				res.json({success:true,msg:"user sucessfully registered",id:user.id});	
 			}
 		});
   	}else{
-  		res.json({sucess:false,msg:"Username Not Available"})
+  		res.json({success:false,msg:"Username Not Available"})
   	}
   });
 
@@ -45,7 +49,7 @@ router.post('/authenticate', function(req, res, next) {
   User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
   	if(user == null){
   		console.log("null user");
-  		res.json({sucess:false,msg:"Invalid Username"})
+  		res.json({success:false,msg:"Invalid Username"})
   	}
   	else{
   		userDetails= user;
@@ -53,13 +57,13 @@ router.post('/authenticate', function(req, res, next) {
   		//console.log(credentials);
   		User.validateUser(credentials,(err,response)=>{
   			if(response){
-  				res.json({sucess:true, user:userDetails});
+  				res.json({success:true, user:userDetails});
   				//User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
-  					//res.json({sucess:true, user:user});
+  					//res.json({success:true, user:user});
   				//});
   			}
   			else{
-					res.json({sucess:true, msg:"Invalid details"});
+					res.json({success:true, msg:"Invalid details"});
   			}
   		
   		});
@@ -79,9 +83,9 @@ router.get('/checkusername/:user_name', function(req, res, next) {
   
   User.checkUserNameExist(detail,(err,user)=>{
   	if(user== null){
-  		res.json({sucess:true,msg:"Username Available"})
+  		res.json({success:true,msg:"Username Available"})
   	}else{
-  		res.json({sucess:false,msg:"Username Not Available"})
+  		res.json({success:false,msg:"Username Not Available"})
   	}
   });
   
