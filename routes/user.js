@@ -9,7 +9,7 @@ router.post('/register', function(req, res, next) {
   	full_name:req.body.full_name,
   	user_name:req.body.user_name,
   	password:req.body.password,
-  	age:req.body.age,
+  	birthdate:new Date(req.body.birthdate),
   	gender:req.body.gender,
   	latitude:req.body.latitude,
   	longitude:req.body.longitude,
