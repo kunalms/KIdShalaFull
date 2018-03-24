@@ -1,0 +1,28 @@
+<div *ngIf="user">
+	<h1 class="page-header">Welcome {{user.full_name}}</h1>
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        Details
+	    </div>
+	    <div class="panel-body">
+	        <h4>Username</h4>
+	        <blockquote>
+	            <p>{{user.user_name}}</p>
+	        </blockquote>
+	        <h4>Gender</h4>
+	        <blockquote>
+	            <p>{{user.gender}}</p>
+	        </blockquote>
+	        <h4>Birthdate</h4>
+	        <blockquote >
+	            <p>{{user.birthdate | date:'fullDate'}}</p>
+	        </blockquote>
+	        <h4>Last seen</h4>
+	        <blockquote >
+	            <p>{{user.last_seen | date:'medium'}}</p>
+	        </blockquote>
+	    </div>
+	    <!-- /.panel-body -->
+	</div>
+
+</div>

@@ -3,10 +3,6 @@ var router = express.Router();
 var User = require('../models/user');
 
 
-router.get('/register', function(req, res, next) {
-  res.json( {"success":true,"msg":"user sucessfully registered","id":"5ab3f21818b4b935b8a32538"}); 
-});
-
 /* GET method  to register user. */
 router.post('/register', function(req, res, next) {
   let newUser = new User({
@@ -49,21 +45,16 @@ router.post('/authenticate', function(req, res, next) {
   User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
   	if(user == null){
   		console.log("null user");
-  		res.json({success:false,msg:"Invalid Username"})
+  		res.json({success:false,msg:"Login Failed. Invalid Username"})
   	}
   	else{
   		userDetails= user;
-  		//console.log(userDetails)
-  		//console.log(credentials);
   		User.validateUser(credentials,(err,response)=>{
   			if(response){
-  				res.json({success:true, user:userDetails});
-  				//User.checkUserNameExist({user_name:credentials.user_name},(err,user)=>{
-  					//res.json({success:true, user:user});
-  				//});
+  				res.json({success:true, msg:"Login successful.", user:userDetails});
   			}
   			else{
-					res.json({success:true, msg:"Invalid details"});
+					res.json({success:false, msg:"Login Failed. Invalid details"});
   			}
   		
   		});
@@ -72,8 +63,11 @@ router.post('/authenticate', function(req, res, next) {
 });
 
 /* GET method  to profile user. */
-router.get('/profile', function(req, res, next) {
-  res.send('profile user');
+router.post('/profile', function(req, res, next) {
+  var uid=req.body.uid;
+  User.getUserById(uid,(err,user_info)=>{
+    res.json({user:user_info});
+  });
 });
 
 router.get('/checkusername/:user_name', function(req, res, next) {
