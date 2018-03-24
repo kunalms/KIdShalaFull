@@ -1,35 +1,36 @@
-<div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span> 
     </button>
-    <a class="navbar-brand" href="index.html">Kid Shala</a>
+    <a class="navbar-brand" href="">Kid Shala</a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-top-links navbar-left">
+        <li [routerLinkActive]="['active']">
+            <a routerLink="/home"><i class="fa fa-home fa-fw"></i> Home</a>
+        </li>
+        
+    </ul>
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
+            <a routerLink="/dashboard"><i class="fa fa-dashboard fa-fw"></i> DashBoard</a>
+        </li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
+            <a routerLink="/profile"><i class="fa fa-user fa-fw"></i> Profile</a>
+        </li>
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']">
+            <a routerLink="/register"><i class="fa fa-user-plus fa-fw"></i> Register</a>
+        </li>
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']">
+            <a routerLink="/login"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+        </li>
+        <li *ngIf="authService.loggedIn()">
+            <a href="#" (click)="onLogoutClick()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        </li>
+    </ul>
+  </div>
 </div>
-<!-- /.navbar-header -->
-
-<ul class="nav navbar-top-links navbar-left">
-    <li [routerLinkActive]="['active']">
-        <a routerLink="/home"><i class="fa fa-home fa-fw"></i> Home</a>
-    </li>
-    
-</ul>
-
-<ul class="nav navbar-top-links navbar-right">
-    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
-        <a routerLink="/dashboard"><i class="fa fa-dashboard fa-fw"></i> DashBoard</a>
-    </li>
-    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
-        <a routerLink="/profile"><i class="fa fa-user fa-fw"></i> Profile</a>
-    </li>
-    <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']">
-        <a routerLink="/register"><i class="fa fa-user-plus fa-fw"></i> Register</a>
-    </li>
-    <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']">
-        <a routerLink="/login"><i class="fa fa-sign-in fa-fw"></i> Login</a>
-    </li>
-    <li *ngIf="authService.loggedIn()">
-        <a href="#" (click)="onLogoutClick()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-    </li>
-</ul>
