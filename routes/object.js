@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var multer  = require('multer');
-var object_upload = multer({ dest: '../uploads/3D_Objects/' });
+
+
+const storage = multer.diskStorage({
+  destination: path.join(__dirname,'../test/'),
+  filename: function(req, file, cb){
+    cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname));
+  }
+});
+
+const upload = multer({storage:storage}).single('object');
 
 var Obj = require('../models/object');
+var Rating = require('../models/rating');
 
 
 /* GET method  to register user. */
@@ -11,14 +22,15 @@ router.post('/add', function(req, res, next) {
 	let newObject = new Obj({
   	name:req.body.name,
   	description:req.body.description,
-  	original_file_path:"",
+  	original_file_path:"/3D_Objects/",
   	asset_bundle_path:"",
   	image_path:"",
   	view_count:0,
   	upload_date:new Date(),
   	cat_id:req.body.cat_id,
   	user_id:req.body.user_id,
-  	approve_status:0
+  	approve_status:0,
+    ratings:[]
   });
 
 	res.json(newObject);
@@ -40,11 +52,7 @@ router.get('/all', function(req, res, next) {
 
 /* GET method  to profile user. */
 router.get('/category/:cat_id', function(req, res, next) {
-
-	var category_id=req.params.cat_id;
-	
-
-  
+	var category_id=req.params.cat_id;  
 });
 
 router.get('/category/:cat_name', function(req, res, next) {
@@ -53,9 +61,15 @@ router.get('/category/:cat_name', function(req, res, next) {
   
 });
 
-router.post('/upload', object_upload.single(''), function (req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-})
+router.post('/upload', function (req, res, next) {
+    upload(req,res, (err)=>{
+      if(err){
+        res.json({success:false,msg:"failed"});
+      }else{
+        console.log(req.file);
+        res.json({success:true,msg:"success"});
+      }
+    });
+});
 
 module.exports = router;

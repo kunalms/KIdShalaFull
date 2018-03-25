@@ -12,16 +12,20 @@
         <li [routerLinkActive]="['active']">
             <a routerLink="/home"><i class="fa fa-home fa-fw"></i> Home</a>
         </li>
-        
-    </ul>
-
-    <ul class="nav navbar-top-links navbar-right">
         <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
             <a routerLink="/dashboard"><i class="fa fa-dashboard fa-fw"></i> DashBoard</a>
         </li>
         <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
+            <a routerLink="/addobject"><i class="glyphicon glyphicon-education"></i> Add Object</a>
+        </li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
             <a routerLink="/profile"><i class="fa fa-user fa-fw"></i> Profile</a>
         </li>
+        
+    </ul>
+
+    <ul class="nav navbar-top-links navbar-right">
+        
         <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']">
             <a routerLink="/register"><i class="fa fa-user-plus fa-fw"></i> Register</a>
         </li>

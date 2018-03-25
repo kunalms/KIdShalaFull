@@ -14,12 +14,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 
 
+
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { FileuploadService } from './services/fileupload.service';
+
 import { AuthGuard } from './guards/auth.guard';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ProfileComponent } from './profile/profile.component';
+import { AddObjectComponent } from './add-object/add-object.component';
 
 const appRoutes:Routes=[
   { path: '',
@@ -36,6 +40,8 @@ const appRoutes:Routes=[
     path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]
   },{
     path:'profile',component:ProfileComponent, canActivate:[AuthGuard]
+  },{
+    path:'addobject',component:AddObjectComponent, canActivate:[AuthGuard]
   }
 ];
 
@@ -47,7 +53,8 @@ const appRoutes:Routes=[
     RegisterComponent,
     DashboardComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddObjectComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,7 @@ const appRoutes:Routes=[
     FlashMessagesModule.forRoot(),
     HttpClientModule
   ],
-  providers: [ValidateService,AuthService,AuthGuard],
+  providers: [ValidateService,AuthService,FileuploadService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

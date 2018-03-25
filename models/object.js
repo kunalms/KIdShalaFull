@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const rating = require('./rating');
+
 
 const ObjectSchema = mongoose.Schema({
 	name:{
@@ -24,7 +26,7 @@ const ObjectSchema = mongoose.Schema({
 		type:Date
 	},
 	cat_id:{
-		type:String,
+		type:[String],
 		required: true
 	},
 	user_id:{
@@ -33,9 +35,10 @@ const ObjectSchema = mongoose.Schema({
 	},
 	approve_status:{
 		type:Number
+	},ratings:{
+		type:[rating.RatingSchema]
 	}
 	},{ collection: 'object'});
-
 
 const Obj = module.exports = mongoose.model('Obj',ObjectSchema);
 
@@ -48,7 +51,7 @@ module.exports.getObjectByCat = function(query,callback){
 	Obj.findById(query,callback);
 }
 
-
 module.exports.addObject = function(newObject,callback){
 	newObject.save(callback);
 }
+
