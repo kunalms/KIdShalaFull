@@ -11,15 +11,16 @@
     "dev": "concurrently  \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "bcryptjs": "*",
     "body-parser": "~1.18.2",
+    "concurrently": "*",
+    "cors": "*",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
-    "serve-favicon": "~2.4.5",
-    "nodemon": "*",
     "mongoose": "*",
-    "cors": "*",
-    "bcryptjs": "*",
+    "multer": "^1.3.0",
+    "nodemon": "*",
     "passport": "*",
-    "concurrently": "*"
+    "serve-favicon": "~2.4.5"
   }
 }

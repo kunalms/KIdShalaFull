@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var multer  = require('multer');
+var object_upload = multer({ dest: '../uploads/3D_Objects/' });
+
 var Obj = require('../models/object');
 
 
@@ -49,5 +52,10 @@ router.get('/category/:cat_name', function(req, res, next) {
 
   
 });
+
+router.post('/upload', object_upload.single(''), function (req, res, next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+})
 
 module.exports = router;
