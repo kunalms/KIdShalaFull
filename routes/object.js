@@ -5,7 +5,7 @@ var multer  = require('multer');
 
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname,'../test/'),
+  destination: path.join(__dirname,'../public/3Dobjects'),
   filename: function(req, file, cb){
     cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname));
   }
@@ -53,7 +53,7 @@ router.post('/upload',upload.single('object') ,function (req, res, next) {
   let newObject = new Obj({
     name:req.body.name,
     description:req.body.description,
-    original_file_path:"/public/3Dobjects/",
+    original_file_path:"/3Dobjects/",
     asset_bundle_path:"",
     asset_name:"",
     file_name:req.file.filename,
