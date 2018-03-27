@@ -11,43 +11,18 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({storage:storage}).single('object');
+const upload = multer({storage:storage});
 
 var Obj = require('../models/object');
 var Rating = require('../models/rating');
 
 
-/* GET method  to register user. */
-router.post('/add', function(req, res, next) {
-	let newObject = new Obj({
-  	name:req.body.name,
-  	description:req.body.description,
-  	original_file_path:"/3D_Objects/",
-  	asset_bundle_path:"",
-  	image_path:"",
-  	view_count:0,
-  	upload_date:new Date(),
-  	cat_id:req.body.cat_id,
-  	user_id:req.body.user_id,
-  	approve_status:0,
-    ratings:[]
-  });
-
-	res.json(newObject);
-  
-  // Obj.addObject(newUser,(err,object)=>{
-  // 	if(err){
-  // 		res.json({sucess:false,msg:"failed to submit your object please try later."});
-  // 	}
-  // 	else{
-  // 		res.json({sucess:true,msg:"your object sucessfully uploaded.",id:object.id});	
-  // 	}
-  // });
-});
 
 /* GET method  to authenticate user. */
 router.get('/all', function(req, res, next) {
-  
+    Obj.listAll((err,data)=>{
+      res.json(data);
+    })
 });
 
 /* GET method  to profile user. */
@@ -61,15 +36,36 @@ router.get('/category/:cat_name', function(req, res, next) {
   
 });
 
-router.post('/upload', function (req, res, next) {
-    upload(req,res, (err)=>{
+router.post('/upload',upload.single('object') ,function (req, res, next) {
+    
+
+    console.log(req.body.name);
+    let newObject = new Obj({
+    name:req.body.name,
+    description:req.body.description,
+    original_file_path:"/public/3Dobjects/",
+    asset_bundle_path:"",
+    asset_name:"",
+    file_name:req.file.filename,
+    image_path:"",
+    view_count:0,
+    upload_date:new Date(),
+    cat_id:req.body.cat_id,
+    user_id:req.body.user_id,
+    approve_status:0
+  });
+    console.log(newObject);
+
+    Obj.addObject(newObject,(err,object)=>{
       if(err){
-        res.json({success:false,msg:"failed"});
-      }else{
-        console.log(req.file);
-        res.json({success:true,msg:"success"});
+        res.json({success:false,msg:"Something went wrong.",err:err});
+      }
+      else{
+        res.json({success:true,msg:"Object sucessfully uploaded.",id:object._id});
       }
     });
+
+    
 });
 
 module.exports = router;

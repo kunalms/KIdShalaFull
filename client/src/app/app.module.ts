@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 
@@ -18,8 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FileuploadService } from './services/fileupload.service';
+import { FetchcategoryService } from './services/fetchcategory.service';
 
 import { AuthGuard } from './guards/auth.guard';
+
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ProfileComponent } from './profile/profile.component';
@@ -64,7 +66,7 @@ const appRoutes:Routes=[
     FlashMessagesModule.forRoot(),
     HttpClientModule
   ],
-  providers: [ValidateService,AuthService,FileuploadService,AuthGuard],
+  providers: [ValidateService,AuthService,FileuploadService,FetchcategoryService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,10 +5,12 @@ const rating = require('./rating');
 
 const ObjectSchema = mongoose.Schema({
 	name:{
-		type:String
+		type:String,
+		required: true
 	},
 	description:{
-		type:String
+		type:String,
+		required: true
 	},
 	original_file_path:{
 		type:String
@@ -16,7 +18,13 @@ const ObjectSchema = mongoose.Schema({
 	asset_bundle_path:{
 		type:String
 	},
+	asset_name:{
+		type:String
+	},
 	image_path:{
+		type:String
+	},
+	file_name:{
 		type:String
 	},
 	view_count:{
@@ -26,7 +34,7 @@ const ObjectSchema = mongoose.Schema({
 		type:Date
 	},
 	cat_id:{
-		type:[String],
+		type:String,
 		required: true
 	},
 	user_id:{
@@ -53,5 +61,9 @@ module.exports.getObjectByCat = function(query,callback){
 
 module.exports.addObject = function(newObject,callback){
 	newObject.save(callback);
+}
+
+module.exports.listAll = function(callback){
+	Obj.find(callback);
 }
 
