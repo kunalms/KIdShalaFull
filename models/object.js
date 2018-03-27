@@ -55,8 +55,8 @@ module.exports.getObjectById = function(id,callback){
 	Obj.findById(id,callback);
 }
 
-module.exports.getObjectByCat = function(query,callback){
-	Obj.findById(query,callback);
+module.exports.findByfield = function(query,callback){
+	Obj.find(query,callback);
 }
 
 module.exports.addObject = function(newObject,callback){

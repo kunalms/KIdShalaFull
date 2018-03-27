@@ -77,7 +77,6 @@ router.post('/addsubscriber', function(req, res, next) {
 	
 });
 
-
 /* POST request for removing a Category subscriber */
 router.post('/removesubscriber', function(req, res, next) {
 	let details={u_id:req.body.u_id,

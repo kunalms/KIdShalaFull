@@ -18,7 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FileuploadService } from './services/fileupload.service';
-import { FetchcategoryService } from './services/fetchcategory.service';
+import { FetchService } from './services/fetch.service';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -66,7 +66,7 @@ const appRoutes:Routes=[
     FlashMessagesModule.forRoot(),
     HttpClientModule
   ],
-  providers: [ValidateService,AuthService,FileuploadService,FetchcategoryService,AuthGuard],
+  providers: [ValidateService,AuthService,FileuploadService,FetchService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

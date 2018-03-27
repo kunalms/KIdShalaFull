@@ -32,15 +32,25 @@ router.get('/category/:cat_id', function(req, res, next) {
 
 router.get('/category/:cat_name', function(req, res, next) {
 	var category_name=req.params.cat_name;
-
   
 });
+
+
+router.get('/user/:user_id', function(req, res, next) {
+  var details= {user_id:req.params.user_id};
+  Obj.findByfield(details,(err,data)=>{
+    if(err){
+      res.json({err:err});
+    }
+    res.json(data);
+  })
+});
+
 
 router.post('/upload',upload.single('object') ,function (req, res, next) {
     
 
-    console.log(req.body.name);
-    let newObject = new Obj({
+  let newObject = new Obj({
     name:req.body.name,
     description:req.body.description,
     original_file_path:"/public/3Dobjects/",
@@ -54,18 +64,15 @@ router.post('/upload',upload.single('object') ,function (req, res, next) {
     user_id:req.body.user_id,
     approve_status:0
   });
-    console.log(newObject);
 
-    Obj.addObject(newObject,(err,object)=>{
-      if(err){
-        res.json({success:false,msg:"Something went wrong.",err:err});
-      }
-      else{
-        res.json({success:true,msg:"Object sucessfully uploaded.",id:object._id});
-      }
-    });
-
-    
+  Obj.addObject(newObject,(err,object)=>{
+    if(err){
+      res.json({success:false,msg:"Something went wrong.",err:err});
+    }
+    else{
+      res.json({success:true,msg:"Object sucessfully uploaded.",id:object._id});
+    }
+  });    
 });
 
 module.exports = router;

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
 import { FileuploadService } from '../services/fileupload.service';
-import { FetchcategoryService } from '../services/fetchcategory.service';
+import { FetchService } from '../services/fetch.service';
 
 @Component({
   selector: 'app-add-object',
@@ -23,13 +23,14 @@ export class AddObjectComponent implements OnInit {
 	selectedCategory:string;
 	
   constructor(private fileUploadService:FileuploadService,
-  private fetchCategorySevice:FetchcategoryService,
+  private fetchSevice:FetchService,
   private flashMessagesService:FlashMessagesService,
   private router:Router ) { }
 
   ngOnInit() {
-  	this.fetchCategorySevice.fetchCategories().subscribe(data=>{
-  		this.categories=data;
+  	this.fetchSevice.fetchCategories().subscribe(data=>{
+  		//console.log(data);
+      this.categories=data;
   		});
   	this.uid= localStorage.getItem('user_id');
   }
