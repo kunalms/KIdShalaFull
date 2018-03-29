@@ -26,6 +26,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ProfileComponent } from './profile/profile.component';
 import { AddObjectComponent } from './add-object/add-object.component';
+import { DashboardItemComponent } from './dashboard-item/dashboard-item.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { AdminnavComponent } from './admin/adminnav/adminnav.component';
+import { AdminaddcategoryComponent } from './admin/adminaddcategory/adminaddcategory.component';
 
 const appRoutes:Routes=[
   { path: '',
@@ -44,6 +48,10 @@ const appRoutes:Routes=[
     path:'profile',component:ProfileComponent, canActivate:[AuthGuard]
   },{
     path:'addobject',component:AddObjectComponent, canActivate:[AuthGuard]
+  },{
+    path:'addcategory',component:AdminaddcategoryComponent
+  },{
+    path:'admin',component:AdmindashboardComponent
   }
 ];
 
@@ -56,7 +64,11 @@ const appRoutes:Routes=[
     DashboardComponent,
     HomeComponent,
     ProfileComponent,
-    AddObjectComponent
+    AddObjectComponent,
+    DashboardItemComponent,
+    AdmindashboardComponent,
+    AdminnavComponent,
+    AdminaddcategoryComponent
   ],
   imports: [
     BrowserModule,

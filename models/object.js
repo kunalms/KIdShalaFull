@@ -42,7 +42,7 @@ const ObjectSchema = mongoose.Schema({
 		required: true
 	},
 	approve_status:{
-		type:Number
+		type:String
 	},ratings:{
 		type:[rating.RatingSchema]
 	}
@@ -56,7 +56,9 @@ module.exports.getObjectById = function(id,callback){
 }
 
 module.exports.findByfield = function(query,callback){
+	console.log(query);
 	Obj.find(query,callback);
+
 }
 
 module.exports.addObject = function(newObject,callback){
@@ -67,3 +69,10 @@ module.exports.listAll = function(callback){
 	Obj.find(callback);
 }
 
+module.exports.approveObject = function(id,callback){
+	Obj.update({_id: id },{ $set: { "approve_status": "1"} },callback);
+}
+
+module.exports.rejectObject = function(id,callback){
+	Obj.update({_id: id },{ $set: { "approve_status": "2"} },callback);
+}

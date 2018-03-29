@@ -5,28 +5,15 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
+
+import { Obj } from '../models/object';
+
 class CategoryResponse{
 	_id:string;
 	name:string;
 }
 
-class ObjectResponse{
-	ratings: any[];
-	_id: string;
-	name: string;
-	description: string;
-	original_file_path: string;
-	asset_bundle_path: string ;
-	asset_name: string ;
-	file_name: string;
-	image_path: string;
-	view_count: number;
-	upload_date: string;
-	cat_id: string;
-	user_id: string;
-	approve_status: number;
-	__v: number;
-}
+
 
 @Injectable()
 export class FetchService {
@@ -38,9 +25,9 @@ export class FetchService {
   	return this.http.get<CategoryResponse[]>(endpoint);
   }
 
-  fetchObjects(user_id):Observable<ObjectResponse[]>{
+  fetchObjects(user_id):Observable<Obj[]>{
   	const endpoint='api/object/user/'+user_id;
-  	return this.http.get<ObjectResponse[]>(endpoint);
+  	return this.http.get<Obj[]>(endpoint);
   }
 
 }

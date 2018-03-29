@@ -27,14 +27,17 @@ router.get('/all', function(req, res, next) {
 
 /* GET method  to profile user. */
 router.get('/category/:cat_id', function(req, res, next) {
-	var category_id=req.params.cat_id;  
+	var details= {cat_id:req.params.cat_id,approve_status:"1"};  
+  Obj.findByfield(details,(err,data)=>{
+    console.log(err);
+    console.log(data);
+    if(err){
+      res.json({err:err});
+    }else{
+      res.json(data)
+    }
+  });
 });
-
-router.get('/category/:cat_name', function(req, res, next) {
-	var category_name=req.params.cat_name;
-  
-});
-
 
 router.get('/user/:user_id', function(req, res, next) {
   var details= {user_id:req.params.user_id};
@@ -43,13 +46,12 @@ router.get('/user/:user_id', function(req, res, next) {
       res.json({err:err});
     }
     res.json(data);
-  })
+  });
 });
 
 
 router.post('/upload',upload.single('object') ,function (req, res, next) {
     
-
   let newObject = new Obj({
     name:req.body.name,
     description:req.body.description,
@@ -62,8 +64,8 @@ router.post('/upload',upload.single('object') ,function (req, res, next) {
     upload_date:new Date(),
     cat_id:req.body.cat_id,
     user_id:req.body.user_id,
-    approve_status:0
-  });
+    approve_status:"0"
+    });
 
   Obj.addObject(newObject,(err,object)=>{
     if(err){
@@ -74,5 +76,31 @@ router.post('/upload',upload.single('object') ,function (req, res, next) {
     }
   });    
 });
+
+
+router.post('/approve',function(req,res,next){
+  var id= req.body.id;
+  Obj.approveObject(id,(err,data)=>{
+    if(err){
+      res.json({success:false,msg:"Something went wrong.",err:err});
+    }
+    else{
+      res.json({success:true,msg:"Object sucessfully approved."});
+    }
+  });
+});
+
+router.post('/reject',function(req,res,next){
+  var id= req.body.id;
+  Obj.rejectObject(id,(err,data)=>{
+    if(err){
+      res.json({success:false,msg:"Something went wrong.",err:err});
+    }
+    else{
+      res.json({success:true,msg:"Object sucessfully rejected."});
+    }
+  });
+});
+
 
 module.exports = router;

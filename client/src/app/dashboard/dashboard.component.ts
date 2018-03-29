@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FetchService } from '../services/fetch.service';
+import { Obj } from '../models/object';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,9 @@ import { FetchService } from '../services/fetch.service';
 export class DashboardComponent implements OnInit {
 
 	displayCategory:string[];
-	userObjectsAll:any[];
+	userObjectsAll:Obj[];
 	selectedCategory:string;
-	displayData:any[];
+	displayData:Obj[];
 	selectedTab:number;
 
 	allCount:number;
@@ -62,6 +63,18 @@ export class DashboardComponent implements OnInit {
 			this.displayData= this.userObjectsAll.filter(this.ispending);
 		}else if(num==3){
 			this.displayData= this.userObjectsAll.filter(this.isrejected);
+		}
+	}
+
+
+	isDataAvailable(){
+		if(this.displayData != undefined){
+			if(this.displayData.length>0){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 	}
 

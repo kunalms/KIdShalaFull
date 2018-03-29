@@ -1,4 +1,7 @@
-
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <app-navbar></app-navbar>
+</nav>
+<div class="container" style="margin-top: 20px">
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Dashboard</h1>
@@ -73,4 +76,26 @@
     </div>
 </div>
 
-<pre>{{displayData | json}}</pre>
+
+
+<div *ngIf="isDataAvailable()" > 
+
+     <div class="table-responsive">
+        <table class="table table-hover" align="left">
+            <thead>
+                <tr>
+                    <th width="25%">Name</th>
+                    <th width="25%">Description</th>
+                    <th width="25%">Upload Date-Time</th>
+                    <th width="25%">Status</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+        <app-dashboard-item *ngFor="let data of displayData" [item]="data"></app-dashboard-item>
+</div>
+
+<div *ngIf="!isDataAvailable()" >
+    <pre>No data is available</pre>
+</div>
+</div>
