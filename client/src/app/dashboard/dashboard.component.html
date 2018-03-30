@@ -79,20 +79,9 @@
 
 
 <div *ngIf="isDataAvailable()" > 
-
-     <div class="table-responsive">
-        <table class="table table-hover" align="left">
-            <thead>
-                <tr>
-                    <th width="25%">Name</th>
-                    <th width="25%">Description</th>
-                    <th width="25%">Upload Date-Time</th>
-                    <th width="25%">Status</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="row">
+        <app-dashboard-item *ngFor="let data of displayData;let i = index" [item]="data" [index]="i"></app-dashboard-item>
     </div>
-        <app-dashboard-item *ngFor="let data of displayData" [item]="data"></app-dashboard-item>
 </div>
 
 <div *ngIf="!isDataAvailable()" >

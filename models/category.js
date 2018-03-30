@@ -44,5 +44,5 @@ module.exports.removeCategorySubscriber = function(details,callback){
 }
 
 module.exports.allCategories = function(callback){
-	Category.find({},'_id name',callback);
+	Category.find({},'_id name description',callback);
 }

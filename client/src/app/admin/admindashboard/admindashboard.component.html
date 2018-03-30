@@ -2,4 +2,90 @@
     <app-adminnav></app-adminnav>
 </nav>
 
-admin dashboard
+<div class="container" style="margin-top: 20px">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Admin Dashboard</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary" (click)="onclick(0)">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-th-list fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{allCount}}</div>
+                        <div>All Requests</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green" (click)="onclick(1)">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-check-circle fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{approvedCount}}</div>
+                        <div>Approved Requests</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow" (click)="onclick(2)">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-time fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{pendingCount}}</div>
+                        <div>Pending Requests</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red" (click)="onclick(3)">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-times-circle fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{rejectedCount}}</div>
+                        <div>Rejected Object Request</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{selectedCategory}}</h1>
+    </div>
+</div>
+
+
+
+<div *ngIf="isDataAvailable()" > 
+    <div class="row">
+    	<pre>{{displayData|json}}</pre>
+    </div>
+</div>
+
+<div *ngIf="!isDataAvailable()" >
+    <pre>No data is available</pre>
+</div>
+</div>

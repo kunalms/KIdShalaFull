@@ -1,15 +1,53 @@
-<div class="table-responsive">
-    <table class="table">
-        <tbody>
-            <tr>
-                <td width="25%">{{item.name}}</td>
-                <td width="25%">{{item.description}}</td>
-                <td width="25%">{{item.upload_date | date : 'short'}}</td>
-                <td width="25%" *ngIf="item.approve_status==0"><span class="btn btn-outline btn-warning" style="background-color: yellow">Pending</span></td>
-                <td width="25%" *ngIf="item.approve_status==1"><span class="btn btn-outline btn-success">Accepted</span></td>
-                <td width="25%" *ngIf="item.approve_status==2"><span class="btn btn-outline btn-danger">Rejected</span></td>
-
-            </tr>
-        </tbody>
-    </table>
+<div  *ngIf="item.approve_status==1" class="col-lg-4">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+                <div class="col-sm-4"></div>
+                <div class=".col-sm-4" align="center"><a href="{{itemUrl}}" target="_blank"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="fa fa-download"></i></button></a>
+                </div>    
+            </div>
+            
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
+</div>
+<div *ngIf="item.approve_status==0" class="col-lg-4">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+                <div class="col-sm-4"></div>
+                <div class=".col-sm-4" align="center"><a href="{{itemUrl}}" target="_blank"><button type="button" class="btn btn-warning btn-circle btn-lg"><i class="fa fa-download"></i></button></a>
+                </div>    
+            </div>
+            
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
+</div>
+<div *ngIf="item.approve_status==2" class="col-lg-4">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+            </div>   
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
 </div>

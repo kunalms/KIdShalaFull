@@ -11,6 +11,7 @@ import { Obj } from '../models/object';
 class CategoryResponse{
 	_id:string;
 	name:string;
+  description:string;
 }
 
 
@@ -28,6 +29,11 @@ export class FetchService {
   fetchObjects(user_id):Observable<Obj[]>{
   	const endpoint='api/object/user/'+user_id;
   	return this.http.get<Obj[]>(endpoint);
+  }
+
+  fetchAllObjects():Observable<Obj[]>{
+    const endpoint='api/object/all';
+    return this.http.get<Obj[]>(endpoint);
   }
 
 }
