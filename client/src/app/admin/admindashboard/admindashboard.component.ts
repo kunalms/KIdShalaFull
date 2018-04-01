@@ -22,17 +22,19 @@ export class AdmindashboardComponent implements OnInit {
 	rejectedCount:number;
 
   	constructor(private fetchService:FetchService) { 
-  		this.selectedTab=0;
+  		this.selectedTab=2;
 		this.fetchService.fetchAllObjects().subscribe(data=>{
 			this.allObjects=data;
-			this.displayData=this.allObjects;
+			this.displayData= this.allObjects.filter(this.ispending);
 			this.allCount=this.allObjects.length;
 			this.approvedCount= this.allObjects.filter(this.isapproved).length;
 			this.pendingCount= this.allObjects.filter(this.ispending).length;
 			this.rejectedCount= this.allObjects.filter(this.isrejected).length;
+			
 		});
 		this.displayCategory=['All Requests','Approved Requests','Pending Requests','Rejected Object Request'];
 		this.selectedCategory=this.displayCategory[this.selectedTab];
+
   	}
 
   	ngOnInit() {

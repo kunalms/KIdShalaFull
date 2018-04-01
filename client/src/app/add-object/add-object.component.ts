@@ -53,7 +53,7 @@ export class AddObjectComponent implements OnInit {
   	});
   }
 
-  	handleFileInput(files: FileList) {
+  handleFileInput(files: FileList) {
     	this.fileToUpload = files.item(0);
 	}
 

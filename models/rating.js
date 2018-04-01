@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 
-
-const RatingSchema = module.exports = mongoose.Schema({
+const RatingSchema = mongoose.Schema({
 	rating:{
 		type:Number
 	},

@@ -80,7 +80,7 @@
 
 <div *ngIf="isDataAvailable()" > 
     <div class="row">
-        <app-dashboard-item *ngFor="let data of displayData;let i = index" [item]="data" [index]="i"></app-dashboard-item>
+        <app-dashboard-item *ngFor="let data of displayData" [item]="data"></app-dashboard-item>
     </div>
 </div>
 

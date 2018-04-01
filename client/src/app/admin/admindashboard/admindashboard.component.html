@@ -81,7 +81,7 @@
 
 <div *ngIf="isDataAvailable()" > 
     <div class="row">
-    	<pre>{{displayData|json}}</pre>
+        <app-dashboarditem *ngFor="let data of displayData" [item]="data"></app-dashboarditem>
     </div>
 </div>
 

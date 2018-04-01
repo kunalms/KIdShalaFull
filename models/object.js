@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const rating = require('./rating');
+const Rating = mongoose.model('Rating');
 
 
 const ObjectSchema = mongoose.Schema({
@@ -44,7 +44,7 @@ const ObjectSchema = mongoose.Schema({
 	approve_status:{
 		type:String
 	},ratings:{
-		type:[rating.RatingSchema]
+		type:[Rating.schema]
 	}
 	},{ collection: 'object'});
 
@@ -69,8 +69,9 @@ module.exports.listAll = function(callback){
 	Obj.find(callback);
 }
 
-module.exports.approveObject = function(id,callback){
-	Obj.update({_id: id },{ $set: { "approve_status": "1"} },callback);
+module.exports.approveObject = function(id,info,callback){
+	console.log(info);
+	Obj.update({_id: id },{ $set: {"approve_status": "1","asset_name":info.asset_name,"asset_bundle_path":info.asset_bundle_path} },callback);
 }
 
 module.exports.rejectObject = function(id,callback){

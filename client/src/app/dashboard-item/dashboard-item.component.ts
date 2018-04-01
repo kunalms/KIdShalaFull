@@ -10,7 +10,6 @@ import { Obj } from '../models/object';
 })
 export class DashboardItemComponent implements OnInit {
 
-	@Input() index: Number;
 	@Input() item: Obj;
 
 	itemUrl:String;

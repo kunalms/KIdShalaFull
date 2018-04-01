@@ -27,4 +27,13 @@ export class FileuploadService {
     formData.append('user_id',uid);
     return this.http.post<FileUploadResponse>(endpoint,formData);
 	}
+
+    postPrefab(fileToUpload:File,asset_name,id):Observable<FileUploadResponse>{
+        const endpoint='api/object/approve';
+        const formData:FormData= new FormData();
+        formData.append('id',id);
+        formData.append('prefab', fileToUpload, fileToUpload.name);
+        formData.append('asset_name',asset_name);
+        return this.http.post<FileUploadResponse>(endpoint,formData);   
+    }
 }

@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
  	onRegisterSubmit(){
 
  		 const dateString = this.birthDate.year+"/"+this.birthDate.month+"/"+this.birthDate.day;
- 		 const user ={
+ 		const user ={
 			full_name:this.name,
   	 		user_name:this.userName,
   	 		password:this.password,

@@ -7,10 +7,6 @@ var passport = require('passport');
 
 var cors = require('cors');
 
-var index = require('./routes/index');
-var user = require('./routes/user');
-var object = require('./routes/object');
-var category = require('./routes/category');
 
 
 var app = express();
@@ -27,6 +23,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 //mongoose connection
 mongoose.connect('mongodb://localhost:27017/kidshala');
+
 mongoose.connection.on('connected',()=>{
 	console.log('connected to database');
 
@@ -36,6 +33,13 @@ mongoose.connection.on('error',(error)=>{
 		console.log('Error occured in connecting to database'+error);
 	}
 })
+
+require('./models/rating');
+
+var index = require('./routes/index');
+var user = require('./routes/user');
+var object = require('./routes/object');
+var category = require('./routes/category');
 
 
 //routes configuration

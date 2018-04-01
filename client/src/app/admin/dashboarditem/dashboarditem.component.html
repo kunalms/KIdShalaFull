@@ -1,0 +1,92 @@
+<div  *ngIf="item.approve_status==1" class="col-lg-4">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+                <div class="col-sm-4"></div>
+                <div class=".col-sm-4" align="center"><a href="{{itemUrl}}" target="_blank"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="fa fa-download"></i></button></a>
+                </div>    
+            </div>
+            
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
+</div>
+<div *ngIf="item.approve_status==0" class="col-lg-4">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+                <div class="col-sm-4"></div>
+                <div class=".col-sm-4" align="center"><a href="{{itemUrl}}" target="_blank"><button type="button" class="btn btn-warning btn-circle btn-lg"><i class="fa fa-download"></i></button></a>
+                </div>    
+            </div>
+            
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+            <a href="{{itemUrl}}" target="_blank"><button  class="btn btn-info ">Download Object</button></a>
+            <button class="btn btn-success " (click)="openWindowCustomClass(content)">Approve</button>
+            <button class="btn btn-danger" (click)="rejectObject" >Reject</button>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
+</div>
+<div *ngIf="item.approve_status==2" class="col-lg-4">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-4"><h4>Name :<br><b>{{item.name}}</b></h4></div>
+            </div>   
+        </div>
+        <div class="panel-body">
+            <p>Description :<br><b>{{item.description}}</b></p>
+        </div>
+        <div class="panel-footer">
+            Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Approve Object : {{item.name}} <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button></h4>
+  </div>
+  <div class="modal-body">
+    <form method="post" (submit)="onUpload()"  enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-12">
+                <label>AssetName</label>
+                <input required="true" class="form-control" [(ngModel)]="assetname" name="assetname">
+                <p class="help-block">Asset name of the prefab</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Prefab File</label>
+                    <input type="file" name="prefab" id="file"
+                        (change)="handleFileInput($event.target.files)">
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:20px">
+            <button type="submit" class="btn btn-success">Upload Object</button>
+            <button type="reset" class="btn btn-danger">Reset Button</button>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

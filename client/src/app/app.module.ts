@@ -30,6 +30,8 @@ import { DashboardItemComponent } from './dashboard-item/dashboard-item.componen
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { AdminnavComponent } from './admin/adminnav/adminnav.component';
 import { AdminaddcategoryComponent } from './admin/adminaddcategory/adminaddcategory.component';
+import { DashboarditemComponent } from './admin/dashboarditem/dashboarditem.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
 
 const appRoutes:Routes=[
   { path: '',
@@ -52,6 +54,8 @@ const appRoutes:Routes=[
     path:'addcategory',component:AdminaddcategoryComponent
   },{
     path:'admin',component:AdmindashboardComponent
+  },{
+    path:'adminhome',component:AdminhomeComponent
   }
 ];
 
@@ -68,7 +72,9 @@ const appRoutes:Routes=[
     DashboardItemComponent,
     AdmindashboardComponent,
     AdminnavComponent,
-    AdminaddcategoryComponent
+    AdminaddcategoryComponent,
+    DashboarditemComponent,
+    AdminhomeComponent
   ],
   imports: [
     BrowserModule,

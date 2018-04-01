@@ -1,0 +1,17 @@
+  	.dark-modal .modal-content {
+     	margin-top: 30%;
+
+    }
+    .dark-modal .close {
+      color: black;
+    }
+    .modal-backdrop.fade
+   	{
+     opacity: 0.5;
+   	}
+   	.modal-open .modal
+   	{
+     opacity: 1;
+   	}
+
+    
