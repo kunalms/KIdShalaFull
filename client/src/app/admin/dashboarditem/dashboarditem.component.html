@@ -32,7 +32,7 @@
             <p>Description :<br><b>{{item.description}}</b></p>
             <a href="{{itemUrl}}" target="_blank"><button  class="btn btn-info ">Download Object</button></a>
             <button class="btn btn-success " (click)="openWindowCustomClass(content)">Approve</button>
-            <button class="btn btn-danger" (click)="rejectObject" >Reject</button>
+            <button class="btn btn-danger" (click)="rejectObject()" >Reject</button>
         </div>
         <div class="panel-footer">
             Uploaded On :<br><b>{{item.upload_date | date:'medium'}}</b>

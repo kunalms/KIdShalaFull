@@ -103,6 +103,7 @@ router.post('/approve',upload_prefab.single('prefab'),function(req,res,next){
 
 router.post('/reject',function(req,res,next){
   var id= req.body.id;
+  console.log(id);
   Obj.rejectObject(id,(err,data)=>{
     if(err){
       res.json({success:false,msg:"Something went wrong.",err:err});

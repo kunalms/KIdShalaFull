@@ -37,11 +37,22 @@ export class DashboarditemComponent implements OnInit {
     }
 
     onUpload() {
-      console.log(this.fileToUpload,this.assetname,this.object_id);
       this.modalRef.close();this.modalRef.close();
       this.fileUploadService.postPrefab(this.fileToUpload,this.assetname,this.object_id).subscribe(data=>{
         if(data.success){
           console.log("success");
+          this.flashMessagesService.show(data.msg,{cssClass:'alert-success',timeout:3000});
+          this.router.navigate(['/adminhome']);
+        }else{
+          this.flashMessagesService.show(data.msg,{cssClass:'alert-danger',timeout:3000});
+          this.router.navigate(['/adminhome']);
+        }
+      });
+    }
+
+    rejectObject(){
+      this.fileUploadService.rejectObject(this.object_id).subscribe(data=>{
+        if(data.success){
           this.flashMessagesService.show(data.msg,{cssClass:'alert-success',timeout:3000});
           this.router.navigate(['/adminhome']);
         }else{

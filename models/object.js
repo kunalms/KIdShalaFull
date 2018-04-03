@@ -75,5 +75,6 @@ module.exports.approveObject = function(id,info,callback){
 }
 
 module.exports.rejectObject = function(id,callback){
+	console.log(id);
 	Obj.update({_id: id },{ $set: { "approve_status": "2"} },callback);
 }
