@@ -29,7 +29,7 @@ export class DashboarditemComponent implements OnInit {
 
 	ngOnInit() {
     this.object_id=this.item._id;
-		this.itemUrl= "http://localhost:3000"+this.item.original_file_path+this.item.file_name;
+		this.itemUrl= "http://139.59.91.250:3000"+this.item.original_file_path+this.item.file_name;
   	}
 
   	openWindowCustomClass(content) {
